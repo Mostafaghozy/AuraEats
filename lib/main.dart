@@ -1,6 +1,6 @@
-import 'package:aura_eats/features/auth/view/login_view.dart';
-import 'package:aura_eats/features/auth/view/signup_view.dart';
-import 'package:aura_eats/features/home/view/home_view.dart';
+import 'package:aura_eats/features/auth/views/login_view.dart';
+import 'package:aura_eats/features/auth/views/signup_view.dart';
+import 'package:aura_eats/features/home/views/home_view.dart';
 import 'package:aura_eats/root.dart';
 import 'package:aura_eats/splash_screen.dart';
 import 'package:flutter/material.dart';
