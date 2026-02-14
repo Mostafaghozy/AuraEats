@@ -25,6 +25,12 @@ class _CustomTextfieldState extends State<CustomTextfield> {
     super.initState();
   }
 
+  void _togglePassword() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -32,20 +38,27 @@ class _CustomTextfieldState extends State<CustomTextfield> {
       cursorHeight: 20,
       obscureText: _obscureText,
       controller: widget.controller,
+      validator: (v) {
+        if (v == null || v.isEmpty) {
+          return "please fill ${widget.hint}";
+        }
+        return null;
+      },
       decoration: InputDecoration(
-        suffixIcon: GestureDetector(
-          onTap: () {
-            setState(() {
-              _obscureText != _obscureText;
-            });
-          },
-          child: Icon(CupertinoIcons.eye),
-        ),
+        suffixIcon: widget.isPassword
+            ? GestureDetector(
+                onTap: _togglePassword,
+                child: Icon(CupertinoIcons.eye),
+              )
+            : null,
+
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(15),
         ),
         hintText: widget.hint,
         fillColor: Colors.white,

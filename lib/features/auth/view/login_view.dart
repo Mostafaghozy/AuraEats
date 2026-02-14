@@ -13,6 +13,7 @@ class LoginView extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController emailController = TextEditingController();
     TextEditingController passController = TextEditingController();
+    final GlobalKey<FormState> formKey = GlobalKey<FormState>();
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -20,28 +21,55 @@ class LoginView extends StatelessWidget {
         body: Center(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Column(
-              children: [
-                Gap(60),
-                AppStrings.logoText,
-                CustomText(
-                  text: 'Welcome Back, Discover The Fast Food',
-                  color: Colors.white,
-                  size: 12,
-                ),
-                Gap(40),
-                CustomTextfield(
-                  hint: "Email Address",
-                  isPassword: false,
-                  controller: emailController,
-                ),
-                Gap(20),
-                CustomTextfield(
-                  hint: "Password",
-                  isPassword: true,
-                  controller: passController,
-                ),
-              ],
+            child: Form(
+              key: formKey,
+              child: Column(
+                children: [
+                  Gap(60),
+                  AppStrings.logoText,
+                  CustomText(
+                    text: 'Welcome Back, Discover The Fast Food',
+                    color: Colors.white,
+                    size: 12,
+                  ),
+                  Gap(80),
+                  CustomTextfield(
+                    hint: "Email Address",
+                    isPassword: false,
+                    controller: emailController,
+                  ),
+                  Gap(20),
+                  CustomTextfield(
+                    hint: "Password",
+                    isPassword: true,
+                    controller: passController,
+                  ),
+                  Gap(30),
+                  GestureDetector(
+                    onTap: () {
+                      if (formKey.currentState!.validate()) {
+                        print("Success login");
+                      }
+                    },
+                    child: Container(
+                      height: 55,
+                      width: double.infinity,
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Center(
+                        child: CustomText(
+                          text: "Login",
+                          weight: FontWeight.bold,
+                          color: AppColors.primary,
+                          size: 15,
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
