@@ -1,5 +1,6 @@
 import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:aura_eats/core/constants/app_strings.dart';
+import 'package:aura_eats/features/auth/widgets/custom_btn.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 import 'package:aura_eats/shared/custom_textField.dart';
 import 'package:flutter/material.dart';
@@ -45,28 +46,13 @@ class LoginView extends StatelessWidget {
                     controller: passController,
                   ),
                   Gap(30),
-                  GestureDetector(
+                  CustomAuthBtn(
+                    text: "Login",
                     onTap: () {
                       if (formKey.currentState!.validate()) {
                         print("Success login");
                       }
                     },
-                    child: Container(
-                      height: 55,
-                      width: double.infinity,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Center(
-                        child: CustomText(
-                          text: "Login",
-                          weight: FontWeight.bold,
-                          color: AppColors.primary,
-                          size: 15,
-                        ),
-                      ),
-                    ),
                   ),
                 ],
               ),
