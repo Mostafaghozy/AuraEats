@@ -29,8 +29,8 @@ class _RootState extends State<Root> {
     return Scaffold(
       body: PageView(
         controller: controller,
-        children: screens,
         physics: NeverScrollableScrollPhysics(),
+        children: screens,
       ),
 
       bottomNavigationBar: Container(

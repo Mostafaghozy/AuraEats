@@ -1,5 +1,9 @@
 import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:aura_eats/core/constants/app_strings.dart';
+import 'package:aura_eats/features/home/widgets/card_item.dart';
+import 'package:aura_eats/features/home/widgets/food_category.dart';
+import 'package:aura_eats/features/home/widgets/search_field.dart';
+import 'package:aura_eats/features/home/widgets/user_header.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -23,94 +27,56 @@ class _HomeViewState extends State<HomeView> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 10.0),
-            child: Column(
-              children: [
-                Gap(40),
-                Row(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SvgPicture.asset(
-                          "assets/logo/Hungry_.svg",
-                          color: AppColors.primary,
-                          height: 35,
-                        ),
-                        Gap(5),
-
-                        CustomText(
-                          text: "Hello, Mostafa Ghozy",
-                          size: 14,
-                          weight: FontWeight.w500,
-                          color: Colors.grey.shade600,
-                        ),
-                      ],
-                    ),
-                    Spacer(),
-                    CircleAvatar(radius: 30),
-                  ],
-                ),
-                Gap(25),
-                Material(
-                  elevation: 2,
-                  shadowColor: Colors.white,
-                  borderRadius: BorderRadius.circular(15),
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(CupertinoIcons.search),
-                      hintText: "Search...",
-
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(15),
-                        borderSide: BorderSide(color: Colors.grey.shade300),
-                      ),
-                    ),
-                  ),
-                ),
-                Gap(25),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: List.generate(category.length, (index) {
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            selectedIndex = index;
-                          });
-                        },
-                        child: Container(
-                          margin: EdgeInsets.only(right: 8),
-                          decoration: BoxDecoration(
-                            color: selectedIndex == index
-                                ? AppColors.primary
-                                : Color.fromARGB(255, 234, 235, 237),
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 25,
-                            vertical: 12,
-                          ),
-                          child: CustomText(
-                            text: category[index],
-                            color: selectedIndex == index
-                                ? Colors.white
-                                : Colors.black,
-                          ),
-                        ),
-                      );
-                    }),
-                  ),
-                ),
-              ],
+        body: CustomScrollView(
+          slivers: [
+            //header
+            SliverAppBar(
+              elevation: 0,
+              pinned: true,
+              floating: false,
+              scrolledUnderElevation: 0,
+              backgroundColor: Colors.white,
+              toolbarHeight: 160,
+              automaticallyImplyLeading: false,
+              flexibleSpace: Padding(
+                padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
+                child: Column(children: [UserHeader(), Gap(20), SearchField()]),
+              ),
             ),
-          ),
+            //search+category
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 15.0,
+                  vertical: 5,
+                ),
+                child: FoodCategory(
+                  selectedIndex: selectedIndex,
+                  category: category,
+                ),
+              ),
+            ),
+
+            //GridView
+            SliverPadding(
+              padding: EdgeInsets.symmetric(horizontal: 15),
+              sliver: SliverGrid(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 2,
+                  childAspectRatio: 0.75,
+                ),
+                delegate: SliverChildBuilderDelegate(
+                  childCount: 6,
+                  (context, index) => CardItem(
+                    image: 'assets/home/test.png',
+                    text: "Cheeseburger",
+                    desc: "Wendy's Burger",
+                    rate: '4.9',
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
