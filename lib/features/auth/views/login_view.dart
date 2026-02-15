@@ -27,7 +27,7 @@ class LoginView extends StatelessWidget {
               child: Column(
                 children: [
                   Gap(60),
-                  AppStrings.logoText,
+                  AppStrings.logoText(),
                   CustomText(
                     text: 'Welcome Back, Discover The Fast Food',
                     color: Colors.white,

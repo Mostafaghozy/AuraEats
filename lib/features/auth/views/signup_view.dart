@@ -27,7 +27,7 @@ class SignupView extends StatelessWidget {
             child: Column(
               children: [
                 Gap(60),
-                AppStrings.logoText,
+                AppStrings.logoText(),
                 Gap(100),
 
                 CustomTextfield(

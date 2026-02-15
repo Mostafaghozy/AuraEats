@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class AppStrings {
-  static final logoText = Text(
+  static Text logoText({Color? color, double? size}) => Text(
     "Hungry?",
     style: TextStyle(
-      fontSize: 50,
-      color: Colors.white,
+      fontSize: size ?? 50,
+      color: color ?? Colors.white,
       fontFamily: "LuckiestGuy",
     ),
   );
