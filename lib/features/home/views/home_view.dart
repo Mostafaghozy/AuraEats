@@ -4,6 +4,7 @@ import 'package:aura_eats/features/home/widgets/card_item.dart';
 import 'package:aura_eats/features/home/widgets/food_category.dart';
 import 'package:aura_eats/features/home/widgets/search_field.dart';
 import 'package:aura_eats/features/home/widgets/user_header.dart';
+import 'package:aura_eats/features/product/views/product_details_view.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -63,15 +64,27 @@ class _HomeViewState extends State<HomeView> {
               sliver: SliverGrid(
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.75,
+                  childAspectRatio: 0.74,
                 ),
                 delegate: SliverChildBuilderDelegate(
                   childCount: 6,
-                  (context, index) => CardItem(
-                    image: 'assets/home/test.png',
-                    text: "Cheeseburger",
-                    desc: "Wendy's Burger",
-                    rate: '4.9',
+                  (context, index) => GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (c) {
+                            return ProductDetailsView();
+                          },
+                        ),
+                      );
+                    },
+                    child: CardItem(
+                      image: 'assets/home/test.png',
+                      text: "Cheeseburger",
+                      desc: "Wendy's Burger",
+                      rate: '4.9',
+                    ),
                   ),
                 ),
               ),

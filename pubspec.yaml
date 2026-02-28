@@ -27,7 +27,7 @@ flutter:
     - assets/
     - assets/splash/
     - assets/home/
-    - assets/animations/
+    - assets/details/
     - assets/logo/
 
   fonts:
