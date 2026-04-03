@@ -3,9 +3,17 @@ import 'package:aura_eats/shared/custom_text.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
-  const CustomButton({super.key, required this.text, required this.onTap});
+  const CustomButton({
+    super.key,
+    required this.text,
+    required this.onTap,
+    this.width,
+    this.color,
+  });
   final String text;
   final Function()? onTap;
+  final double? width;
+  final Color? color;
 
   @override
   Widget build(BuildContext context) {
@@ -14,15 +22,18 @@ class CustomButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 20, vertical: 15),
         height: 60,
+        width: width,
         decoration: BoxDecoration(
-          color: AppColors.primary,
+          color: color ?? AppColors.primary,
           borderRadius: BorderRadius.circular(20),
         ),
         alignment: Alignment.center,
-        child: CustomText(
-          text: text,
-          color: Colors.white,
-          weight: FontWeight.bold,
+        child: Center(
+          child: CustomText(
+            text: text,
+            color: Colors.white,
+            weight: FontWeight.bold,
+          ),
         ),
       ),
     );
