@@ -78,7 +78,7 @@ class CartItem extends StatelessWidget {
                     height: 45,
                     decoration: BoxDecoration(
                       color: AppColors.primary,
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(15),
                     ),
                     alignment: Alignment.center,
                     child: CustomText(

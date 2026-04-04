@@ -1,5 +1,6 @@
 import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:aura_eats/features/cart/widgets/cart_item.dart';
+import 'package:aura_eats/features/checkout/views/checkout_view.dart';
 import 'package:aura_eats/shared/custom_button.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 import 'package:flutter/cupertino.dart';
@@ -91,7 +92,19 @@ class _CartViewState extends State<CartView> {
                 CustomText(text: "\$18.9", size: 24, weight: FontWeight.bold),
               ],
             ),
-            CustomButton(text: "Checkout", onTap: () {}),
+            CustomButton(
+              text: "Checkout",
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return CheckoutView();
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),

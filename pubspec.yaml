@@ -29,6 +29,7 @@ flutter:
     - assets/home/
     - assets/details/
     - assets/logo/
+    - assets/checkout/
 
   fonts:
     - family: LuckiestGuy
