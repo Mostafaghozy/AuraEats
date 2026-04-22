@@ -2,7 +2,7 @@ import 'package:aura_eats/features/auth/views/login_view.dart';
 import 'package:aura_eats/features/auth/views/signup_view.dart';
 import 'package:aura_eats/features/home/views/home_view.dart';
 import 'package:aura_eats/root.dart';
-import 'package:aura_eats/splash_screen.dart';
+import 'package:aura_eats/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: Root(),
+      home: SignupView(),
     );
   }
 }

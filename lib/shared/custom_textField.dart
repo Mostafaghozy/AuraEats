@@ -35,6 +35,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
   Widget build(BuildContext context) {
     return TextFormField(
       cursorColor: AppColors.primary,
+
       cursorHeight: 20,
       obscureText: _obscureText,
       controller: widget.controller,
@@ -48,7 +49,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
         suffixIcon: widget.isPassword
             ? GestureDetector(
                 onTap: _togglePassword,
-                child: Icon(CupertinoIcons.eye),
+                child: Icon(CupertinoIcons.eye, color: Colors.white),
               )
             : null,
 
@@ -61,6 +62,7 @@ class _CustomTextfieldState extends State<CustomTextfield> {
           borderRadius: BorderRadius.circular(10),
         ),
         hintText: widget.hint,
+        hintStyle: TextStyle(color: AppColors.primary),
         fillColor: Colors.white,
         filled: true,
       ),
