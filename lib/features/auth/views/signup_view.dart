@@ -25,7 +25,7 @@ class SignupView extends StatelessWidget {
           key: formKey,
           child: Column(
             children: [
-              Gap(200),
+              Gap(170),
               SvgPicture.asset(
                 "assets/logo/Hungry_.svg",
                 color: AppColors.primary,
@@ -39,7 +39,7 @@ class SignupView extends StatelessWidget {
                 ),
               ),
 
-              Gap(90),
+              Gap(70),
 
               Expanded(
                 child: Container(
@@ -52,49 +52,51 @@ class SignupView extends StatelessWidget {
                     ),
                   ),
 
-                  child: Column(
-                    children: [
-                      CustomTextfield(
-                        hint: "Name",
-                        isPassword: false,
-                        controller: nameController,
-                      ),
-                      Gap(10),
-                      CustomTextfield(
-                        hint: "Email Address",
-                        isPassword: false,
-                        controller: emailController,
-                      ),
-                      Gap(10),
-                      CustomTextfield(
-                        hint: "Password",
-                        isPassword: true,
-                        controller: passController,
-                      ),
-                      Gap(10),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        CustomTextfield(
+                          hint: "Name",
+                          isPassword: false,
+                          controller: nameController,
+                        ),
+                        Gap(10),
+                        CustomTextfield(
+                          hint: "Email Address",
+                          isPassword: false,
+                          controller: emailController,
+                        ),
+                        Gap(10),
+                        CustomTextfield(
+                          hint: "Password",
+                          isPassword: true,
+                          controller: passController,
+                        ),
+                        Gap(10),
 
-                      Gap(30),
-                      CustomAuthBtn(
-                        text: "Sign up",
-                        onTap: () {
-                          if (formKey.currentState!.validate()) {
-                            print("Success register");
-                          }
-                        },
-                      ),
-                      Gap(20),
-                      CustomAuthBtn(
-                        text: "Go To Login ?",
-                        color: Colors.white,
-                        textColor: AppColors.primary,
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (c) => LoginView()),
-                          );
-                        },
-                      ),
-                    ],
+                        Gap(30),
+                        CustomAuthBtn(
+                          text: "Sign up",
+                          onTap: () {
+                            if (formKey.currentState!.validate()) {
+                              print("Success register");
+                            }
+                          },
+                        ),
+                        Gap(20),
+                        CustomAuthBtn(
+                          text: "Go To Login ?",
+                          color: Colors.white,
+                          textColor: AppColors.primary,
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (c) => LoginView()),
+                            );
+                          },
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
