@@ -150,6 +150,7 @@ class _CheckoutViewState extends State<CheckoutView> {
             ),
           ],
         ),
+
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
           child: Row(
@@ -218,7 +219,7 @@ class _CheckoutViewState extends State<CheckoutView> {
                                   size: 13,
                                 ),
 
-                                Gap(50),
+                                Gap(20),
                                 CustomButton(
                                   text: "Go Back",
                                   onTap: () {

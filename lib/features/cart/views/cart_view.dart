@@ -16,7 +16,7 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   late List<int> quantities;
-  final int itemCount = 20;
+  final int itemCount = 3;
 
   @override
   void initState() {
@@ -64,8 +64,9 @@ class _CartViewState extends State<CartView> {
         ),
       ),
       bottomSheet: Container(
-        padding: EdgeInsets.all(10),
-        height: 100,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+
+        height: 90,
         width: double.infinity,
         decoration: BoxDecoration(
           color: Colors.white,
@@ -75,9 +76,9 @@ class _CartViewState extends State<CartView> {
           ),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.05),
-              blurRadius: 10,
-              offset: Offset(0, -3),
+              color: Colors.grey.shade800,
+              blurRadius: 20,
+              offset: Offset(0, 0),
             ),
           ],
         ),
