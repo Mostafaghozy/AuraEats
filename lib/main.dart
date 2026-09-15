@@ -9,11 +9,11 @@ import 'package:flutter/material.dart';
 
 void main() {
   runApp(
-    // DevicePreview(
-    //   enabled: !kReleaseMode,
-    //   builder: (context) => MyApp(), // Wrap your app
-    // ),
-    const MyApp(),
+    DevicePreview(
+      enabled: !kReleaseMode,
+      builder: (context) => MyApp(), // Wrap your app
+    ),
+    // const MyApp(),
   );
 }
 
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
       builder: DevicePreview.appBuilder,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Colors.white),
-      home: Root(),
+      home: SplashView(),
     );
   }
 }

@@ -17,8 +17,11 @@ class CardItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      elevation: 5,
+
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       color: Colors.white,
-      shadowColor: Colors.grey,
+      shadowColor: AppColors.primary,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -32,7 +35,7 @@ class CardItem extends StatelessWidget {
               children: [
                 CustomText(text: "⭐ $rate"),
                 Spacer(),
-                Icon(CupertinoIcons.heart_fill, color: AppColors.primary),
+                Icon(CupertinoIcons.heart, color: AppColors.primary),
               ],
             ),
           ],

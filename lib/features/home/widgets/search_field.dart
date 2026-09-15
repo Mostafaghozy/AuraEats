@@ -1,3 +1,4 @@
+import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -7,9 +8,10 @@ class SearchField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      elevation: 2,
       shadowColor: Colors.white,
+
       borderRadius: BorderRadius.circular(15),
+
       child: TextField(
         decoration: InputDecoration(
           prefixIcon: Icon(CupertinoIcons.search),
@@ -19,11 +21,11 @@ class SearchField extends StatelessWidget {
 
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.white54),
+            borderSide: BorderSide(color: AppColors.primary),
           ),
           focusedBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(15),
-            borderSide: BorderSide(color: Colors.white54),
+            borderSide: BorderSide(color: AppColors.primary),
           ),
         ),
       ),

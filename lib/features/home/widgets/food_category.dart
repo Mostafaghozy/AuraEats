@@ -40,16 +40,20 @@ class _FoodCategoryState extends State<FoodCategory> {
             },
             child: Container(
               margin: EdgeInsets.only(right: 8),
+
               decoration: BoxDecoration(
                 color: selectedIndex == index
                     ? AppColors.primary
-                    : Color.fromARGB(255, 234, 235, 237),
-                borderRadius: BorderRadius.circular(20),
+                    : Colors.white,
+                borderRadius: BorderRadius.circular(15),
+                border: Border.all(color: AppColors.primary),
               ),
-              padding: EdgeInsets.symmetric(horizontal: 25, vertical: 12),
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
               child: CustomText(
                 text: widget.category[index],
-                color: selectedIndex == index ? Colors.white : Colors.black,
+                color: selectedIndex == index
+                    ? Colors.white
+                    : AppColors.primary,
               ),
             ),
           );
