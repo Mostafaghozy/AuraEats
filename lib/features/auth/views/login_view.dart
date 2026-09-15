@@ -27,30 +27,48 @@ class LoginView extends StatelessWidget {
             key: formKey,
             child: Column(
               children: [
-                Gap(170),
-                SvgPicture.asset(
-                  "assets/logo/Hungry_.svg",
-                  color: AppColors.primary,
+                Gap(60),
+                Container(
+                  height: 100,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    border: Border.all(color: AppColors.primary, width: 5),
+                    borderRadius: BorderRadius.circular(35),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      SvgPicture.asset(
+                        "assets/logo/Hungry_.svg",
+                        color: AppColors.primary,
+                        width: 50,
+                        height: 50,
+                      ),
+                      CustomText(
+                        text: 'Welcome Back, Discover The Fast Food',
+                        color: AppColors.primary,
+                        size: 12,
+                      ),
+                    ],
+                  ),
                 ),
-                CustomText(
-                  text: 'Welcome Back, Discover The Fast Food',
-                  color: AppColors.primary,
-                  size: 12,
-                ),
-                Gap(70),
+                Gap(30),
+
                 Expanded(
                   child: Container(
-                    padding: EdgeInsets.all(25),
+                    padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
                       color: AppColors.primary,
                       borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
+                        topLeft: Radius.circular(80),
+                        topRight: Radius.circular(80),
                       ),
                     ),
                     child: SingleChildScrollView(
                       child: Column(
                         children: [
+                          Gap(80),
                           CustomTextfield(
                             hint: "Email Address",
                             isPassword: false,
@@ -86,22 +104,17 @@ class LoginView extends StatelessWidget {
 
                           ///Guest
                           Gap(20),
-                          GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (c) {
-                                    return Root();
-                                  },
-                                ),
-                              );
-                            },
-                            child: CustomText(
-                              text: "Continue as a guest ?",
-                              color: Colors.white,
-                              size: 13,
-                              weight: FontWeight.bold,
+                          CustomAuthBtn(
+                            width: 200,
+                            height: 40,
+                            text: "Continue as a guest?",
+                            onTap: () => Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (c) {
+                                  return Root();
+                                },
+                              ),
                             ),
                           ),
                         ],
