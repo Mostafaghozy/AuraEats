@@ -30,7 +30,7 @@ class LoginView extends StatelessWidget {
                 Gap(60),
                 Container(
                   height: 100,
-                  width: 350,
+                  width: 315,
                   decoration: BoxDecoration(
                     color: Colors.white,
                     border: Border.all(color: AppColors.primary, width: 5),
@@ -49,6 +49,7 @@ class LoginView extends StatelessWidget {
                         text: 'Welcome Back, Discover The Fast Food',
                         color: AppColors.primary,
                         size: 12,
+                        weight: FontWeight.w700,
                       ),
                     ],
                   ),

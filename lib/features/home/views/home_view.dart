@@ -35,12 +35,13 @@ class _HomeViewState extends State<HomeView> {
               elevation: 0,
               pinned: true,
               floating: false,
+
               scrolledUnderElevation: 0,
-              backgroundColor: Colors.white,
-              toolbarHeight: 160,
+              backgroundColor: AppColors.primary,
+              toolbarHeight: 150,
               automaticallyImplyLeading: false,
               flexibleSpace: Padding(
-                padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
+                padding: const EdgeInsets.only(top: 40, right: 10, left: 10),
                 child: Column(children: [UserHeader(), Gap(20), SearchField()]),
               ),
             ),
