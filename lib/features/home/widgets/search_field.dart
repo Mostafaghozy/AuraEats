@@ -7,11 +7,8 @@ class SearchField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Material(
-      shadowColor: Colors.white,
-
-      borderRadius: BorderRadius.circular(15),
-
+    return SizedBox(
+      height: 50,
       child: TextField(
         decoration: InputDecoration(
           prefixIcon: Icon(CupertinoIcons.search),

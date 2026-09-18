@@ -18,53 +18,97 @@ class CustomTextfield extends StatefulWidget {
 }
 
 class _CustomTextfieldState extends State<CustomTextfield> {
-  late bool _obscureText;
+  late bool _isObscure;
+
   @override
   void initState() {
-    _obscureText = widget.isPassword;
     super.initState();
+    _isObscure = widget.isPassword;
   }
 
-  void _togglePassword() {
+  void _toggleObscure() {
     setState(() {
-      _obscureText = !_obscureText;
+      _isObscure = !_isObscure;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      cursorColor: AppColors.primary,
-
-      cursorHeight: 20,
-      obscureText: _obscureText,
-      controller: widget.controller,
-      validator: (v) {
-        if (v == null || v.isEmpty) {
-          return "please fill ${widget.hint}";
-        }
-        return null;
-      },
-      decoration: InputDecoration(
-        suffixIcon: widget.isPassword
-            ? GestureDetector(
-                onTap: _togglePassword,
-                child: Icon(CupertinoIcons.eye, color: AppColors.primary),
-              )
-            : null,
-
-        enabledBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(10),
+    return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withOpacity(0.25),
+            blurRadius: 10,
+            offset: const Offset(0, 10),
+          ),
+        ],
+      ),
+      child: TextFormField(
+        style: TextStyle(
+          color: AppColors.primary,
+          fontSize: 16,
+          fontWeight: FontWeight.w700,
         ),
-        focusedBorder: OutlineInputBorder(
-          borderSide: BorderSide(color: Colors.white),
-          borderRadius: BorderRadius.circular(10),
+
+        cursorColor: AppColors.primary,
+        cursorHeight: 20,
+        obscureText: _isObscure,
+        controller: widget.controller,
+        validator: (v) {
+          if (v == null || v.isEmpty) {
+            return "please fill ${widget.hint}";
+          }
+          return null;
+        },
+        decoration: InputDecoration(
+          suffixIcon: widget.isPassword
+              ? IconButton(
+                  onPressed: _toggleObscure,
+                  icon: Icon(
+                    size: 20,
+                    _isObscure
+                        ? CupertinoIcons.eye_slash_fill
+                        : CupertinoIcons.eye_solid,
+                  ),
+                )
+              : null,
+          suffixIconColor: AppColors.primary,
+          errorStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 12,
+            fontWeight: FontWeight.w600,
+          ),
+          errorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red.shade700),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedErrorBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.red.shade700, width: 2),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          enabledBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: BorderSide(color: Colors.white),
+            borderRadius: BorderRadius.circular(10),
+          ),
+          hintText: widget.hint,
+          hintStyle: TextStyle(
+            color: AppColors.primary,
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+          ),
+          fillColor: Colors.white,
+          filled: true,
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 14,
+            vertical: 16,
+          ),
         ),
-        hintText: widget.hint,
-        hintStyle: TextStyle(color: AppColors.primary),
-        fillColor: Colors.white,
-        filled: true,
       ),
     );
   }

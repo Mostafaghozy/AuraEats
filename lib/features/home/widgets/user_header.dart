@@ -15,26 +15,25 @@ class UserHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset(
-              "assets/logo/Hungry_.svg",
-              color: AppColors.primary,
-              height: 35,
-            ),
+            SvgPicture.asset("assets/logo/Hungry_.svg", height: 35),
             Gap(5),
 
-            CustomText(
-              text: "Hello, Mostafa Ghozy",
-              size: 14,
-              weight: FontWeight.w500,
-              color: Colors.grey.shade600,
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 15),
+              child: CustomText(
+                text: "Hello, Mostafa Ghozy",
+                size: 14,
+                weight: FontWeight.w500,
+                color: Colors.white,
+              ),
             ),
           ],
         ),
         Spacer(),
         CircleAvatar(
-          radius: 30,
-          child: Icon(CupertinoIcons.person, color: Colors.white),
-          backgroundColor: AppColors.primary,
+          radius: 25,
+          backgroundColor: Colors.white,
+          child: Icon(CupertinoIcons.person, color: AppColors.primary),
         ),
       ],
     );

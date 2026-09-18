@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 
 class FoodCategory extends StatefulWidget {
-  FoodCategory({
+  const FoodCategory({
     super.key,
     required this.selectedIndex,
     required this.category,

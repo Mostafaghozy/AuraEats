@@ -11,19 +11,21 @@ class CustomAuthBtn extends StatelessWidget {
     this.color,
     this.textColor,
     this.width,
+    this.height,
   });
   final Function()? onTap;
   final String text;
   final Color? color;
   final Color? textColor;
   final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        height: 55,
+        height: height ?? 55,
         width: width ?? double.infinity,
         decoration: BoxDecoration(
           color: color ?? AppColors.primary,

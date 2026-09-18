@@ -16,29 +16,35 @@ class CardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
+    return Container(
+      decoration: BoxDecoration(),
+      child: Card(
+        elevation: 5,
 
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: Colors.white,
-      shadowColor: AppColors.primary,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Image.asset(image, width: 150),
-            Gap(12),
-            CustomText(text: text, weight: FontWeight.bold),
-            CustomText(text: desc),
-            Row(
-              children: [
-                CustomText(text: "⭐ $rate"),
-                Spacer(),
-                Icon(CupertinoIcons.heart, color: AppColors.primary),
-              ],
-            ),
-          ],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+          side: BorderSide(color: AppColors.primary, width: 1),
+        ),
+        color: Colors.white,
+        shadowColor: AppColors.primary,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Image.asset(image, width: 150),
+              Gap(12),
+              CustomText(text: text, weight: FontWeight.bold),
+              CustomText(text: desc),
+              Row(
+                children: [
+                  CustomText(text: "⭐ $rate"),
+                  Spacer(),
+                  Icon(CupertinoIcons.heart, color: AppColors.primary),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
