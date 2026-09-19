@@ -29,19 +29,22 @@ class _ProfileViewState extends State<ProfileView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.primary,
+      backgroundColor: Colors.white,
 
       appBar: AppBar(
         scrolledUnderElevation: 0,
-        backgroundColor: AppColors.primary,
+        backgroundColor: Colors.white,
         leading: GestureDetector(
           onTap: () => Navigator.pop(context),
-          child: Icon(Icons.arrow_back, color: Colors.white),
+          child: Icon(Icons.arrow_back, color: AppColors.primary),
         ),
         actions: [
           Padding(
             padding: const EdgeInsets.all(10),
-            child: SvgPicture.asset("assets/profile/setting.svg"),
+            child: SvgPicture.asset(
+              "assets/profile/setting.svg",
+              colorFilter: ColorFilter.mode(AppColors.primary, BlendMode.srcIn),
+            ),
           ),
         ],
       ),
@@ -53,8 +56,8 @@ class _ProfileViewState extends State<ProfileView> {
             children: [
               Center(
                 child: Container(
-                  height: 120,
-                  width: 120,
+                  height: 100,
+                  width: 100,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       image: NetworkImage(
@@ -69,99 +72,118 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               Gap(30),
 
-              CustomUserTextField(label: "Name", controller: _name),
+              CustomUserTextField(
+                label: "Name",
+                controller: _name,
+                textColor: AppColors.primary,
+                borderColor: AppColors.primary,
+                cursorColor: AppColors.primary,
+              ),
               Gap(25),
-              CustomUserTextField(label: "Email", controller: _email),
+              CustomUserTextField(
+                label: "Email",
+                controller: _email,
+                textColor: AppColors.primary,
+                borderColor: AppColors.primary,
+                cursorColor: AppColors.primary,
+              ),
               Gap(25),
               CustomUserTextField(
                 label: "Delivery address",
                 controller: _address,
+                textColor: AppColors.primary,
+                borderColor: AppColors.primary,
+                cursorColor: AppColors.primary,
               ),
               Gap(25),
-              Divider(),
+              Divider(color: AppColors.primary),
               Gap(15),
               ListTile(
                 onTap: () {},
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
+                  borderRadius: BorderRadius.circular(20),
                 ),
                 title: CustomText(
                   text: "Debit card",
-                  color: Colors.black,
+                  color: Colors.white,
                   weight: FontWeight.bold,
                   size: 15,
                 ),
                 subtitle: CustomText(
                   text: "3566 **** **** 0505",
-                  color: Colors.grey.shade400,
+                  color: Colors.white,
                 ),
-                tileColor: Color(0xffF3F4F6),
+                tileColor: AppColors.primary,
                 contentPadding: EdgeInsets.symmetric(
                   vertical: 2,
                   horizontal: 16,
                 ),
-                leading: Image.asset("assets/checkout/visa.png"),
-                trailing: CustomText(
-                  text: "Default",
-                  color: Colors.grey.shade600,
+                leading: Image.asset(
+                  "assets/checkout/visa-logo.png",
+                  width: 70,
+                  height: 70,
+                ),
+                trailing: CustomText(text: "Default", color: Colors.white),
+              ),
+              Gap(50),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    ///edit profile
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          CustomText(
+                            text: "Edit Profile",
+                            weight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          Gap(5),
+
+                          Icon(CupertinoIcons.pencil, color: Colors.white),
+                        ],
+                      ),
+                    ),
+
+                    ///logout
+                    Container(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 30,
+                        vertical: 15,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        border: Border.all(color: AppColors.primary),
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Row(
+                        children: [
+                          CustomText(
+                            text: "Logout",
+                            weight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                          Gap(5),
+
+                          Icon(Icons.logout, color: Colors.white),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
+
               Gap(400),
-            ],
-          ),
-        ),
-      ),
-
-      bottomSheet: Container(
-        height: 80,
-        decoration: BoxDecoration(color: Colors.white),
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              ///edit profile
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                decoration: BoxDecoration(
-                  color: AppColors.primary,
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: "Edit Profile",
-                      weight: FontWeight.bold,
-                      color: Colors.white,
-                    ),
-                    Gap(5),
-
-                    Icon(CupertinoIcons.pencil, color: Colors.white),
-                  ],
-                ),
-              ),
-
-              ///logout
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30, vertical: 15),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  border: Border.all(color: AppColors.primary),
-                  borderRadius: BorderRadius.circular(20),
-                ),
-                child: Row(
-                  children: [
-                    CustomText(
-                      text: "Logout",
-                      weight: FontWeight.bold,
-                      color: AppColors.primary,
-                    ),
-                    Gap(5),
-
-                    Icon(Icons.logout, color: AppColors.primary),
-                  ],
-                ),
-              ),
             ],
           ),
         ),

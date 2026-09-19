@@ -1,12 +1,9 @@
-import 'dart:ui';
-
-import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:aura_eats/features/auth/views/profile_view.dart';
 import 'package:aura_eats/features/cart/views/cart_view.dart';
 import 'package:aura_eats/features/home/views/home_view.dart';
+import 'package:aura_eats/features/home/widgets/liquid_glass_nav_bar.dart';
 import 'package:aura_eats/features/orderHistory/views/order_history_view.dart';
-import 'package:aura_eats/widgets/custom_bottom_nav_item.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 
 class Root extends StatefulWidget {
@@ -18,10 +15,10 @@ class Root extends StatefulWidget {
 
 class _RootState extends State<Root> {
   late PageController controller;
-
   late List<Widget> screens;
 
   int currentScreen = 0;
+  int pressedIndex = -1;
 
   @override
   void initState() {
@@ -29,7 +26,12 @@ class _RootState extends State<Root> {
 
     controller = PageController(initialPage: currentScreen);
 
-    screens = [HomeView(), CartView(), OrderHistoryView(), ProfileView()];
+    screens = [
+      const HomeView(),
+      const CartView(),
+      const OrderHistoryView(),
+      const ProfileView(),
+    ];
   }
 
   @override
@@ -39,82 +41,70 @@ class _RootState extends State<Root> {
   }
 
   void changeScreen(int index) {
+    if (currentScreen == index) return;
+
     setState(() {
       currentScreen = index;
+      pressedIndex = index;
     });
 
     controller.animateToPage(
       index,
-      duration: const Duration(milliseconds: 150),
-      curve: Curves.linear,
+      duration: const Duration(milliseconds: 50),
+      curve: Curves.easeOutCubic,
     );
+
+    Future.delayed(const Duration(milliseconds: 50), () {
+      if (mounted) {
+        setState(() {
+          pressedIndex = -1;
+        });
+      }
+    });
+  }
+
+  void pressItem(int index) {
+    setState(() {
+      pressedIndex = index;
+    });
+  }
+
+  void releaseItem() {
+    setState(() {
+      pressedIndex = -1;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      extendBody: false, //to show bottom navigation bar
+      extendBody: true,
 
-      body: PageView(
-        controller: controller,
-        physics: const NeverScrollableScrollPhysics(),
-        children: screens,
-      ),
+      body: Stack(
+        children: [
+          PageView(
+            controller: controller,
+            physics: const NeverScrollableScrollPhysics(),
+            children: screens,
+          ),
 
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(30),
+          Positioned(
+            left: 20,
+            right: 20,
+            bottom: 10,
 
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 0, sigmaY: 0),
+            child: LiquidGlassNavBar(
+              currentIndex: currentScreen,
+              pressedIndex: pressedIndex,
 
-            child: Container(
-              height: 80,
+              onItemSelected: changeScreen,
 
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.18),
+              onItemPressed: pressItem,
 
-                borderRadius: BorderRadius.circular(30),
-
-                border: Border.all(color: AppColors.primary, width: 1),
-              ),
-
-              child: Row(
-                children: [
-                  CustomBottomNavItem(
-                    index: 0,
-                    icon: CupertinoIcons.home,
-                    label: 'Home',
-                    isSelected: currentScreen == 0,
-                    onTap: () => changeScreen(0),
-                  ),
-                  CustomBottomNavItem(
-                    index: 1,
-                    icon: CupertinoIcons.cart,
-                    label: 'Cart',
-                    isSelected: currentScreen == 1,
-                    onTap: () => changeScreen(1),
-                  ),
-                  CustomBottomNavItem(
-                    index: 2,
-                    icon: Icons.local_restaurant_sharp,
-                    label: 'Orders',
-                    isSelected: currentScreen == 2,
-                    onTap: () => changeScreen(2),
-                  ),
-                  CustomBottomNavItem(
-                    index: 3,
-                    icon: CupertinoIcons.profile_circled,
-                    label: 'Profile',
-                    isSelected: currentScreen == 3,
-                    onTap: () => changeScreen(3),
-                  ),
-                ],
-              ),
+              onItemReleased: releaseItem,
             ),
           ),
-        ),
+        ],
       ),
     );
   }
