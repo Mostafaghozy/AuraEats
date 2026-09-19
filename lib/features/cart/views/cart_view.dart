@@ -1,11 +1,7 @@
-import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:aura_eats/features/cart/widgets/cart_item.dart';
+import 'package:aura_eats/features/cart/widgets/cart_summary.dart';
 import 'package:aura_eats/features/checkout/views/checkout_view.dart';
-import 'package:aura_eats/shared/custom_button.dart';
-import 'package:aura_eats/shared/custom_text.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -16,7 +12,7 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   late List<int> quantities;
-  final int itemCount = 3;
+  final int itemCount = 10;
 
   @override
   void initState() {
@@ -48,64 +44,36 @@ class _CartViewState extends State<CartView> {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: ListView.builder(
-          padding: EdgeInsets.only(bottom: 120, top: 10),
-          itemCount: itemCount,
-          itemBuilder: (context, index) {
-            return CartItem(
-              image: 'assets/home/test.png',
-              text: 'Hamburger',
-              desc: 'Veggie Burger',
-              num: quantities[index],
-              onAdd: () => onAdd(index),
-              onMin: () => onMin(index),
-            );
-          },
-        ),
-      ),
-      bottomSheet: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-
-        height: 90,
-        width: double.infinity,
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.shade800,
-              blurRadius: 20,
-              offset: Offset(0, 0),
-            ),
-          ],
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: Column(
           children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CustomText(text: "Total", size: 16),
-                CustomText(text: "\$18.9", size: 24, weight: FontWeight.bold),
-              ],
+            Expanded(
+              child: ListView.builder(
+                padding: const EdgeInsets.only(bottom: 20, top: 10),
+                itemCount: itemCount,
+                itemBuilder: (context, index) {
+                  return CartItem(
+                    image: 'assets/home/test.png',
+                    text: 'Hamburger',
+                    desc: 'Veggie Burger',
+                    num: quantities[index],
+                    onAdd: () => onAdd(index),
+                    onMin: () => onMin(index),
+                  );
+                },
+              ),
             ),
-            CustomButton(
-              text: "Checkout",
-              onTap: () {
+            const SizedBox(height: 20),
+            CartSummary(
+              total: '\$18.9',
+              onCheckout: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return CheckoutView();
-                    },
-                  ),
+                  MaterialPageRoute(builder: (context) => const CheckoutView()),
                 );
               },
             ),
+            // هذه المساحة تم إضافتها لرفع زر الدفع فوق شريط التنقل العائم
+            const SizedBox(height: 130),
           ],
         ),
       ),

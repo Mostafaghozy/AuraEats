@@ -41,10 +41,11 @@ class _HomeViewState extends State<HomeView> {
               toolbarHeight: 150,
               automaticallyImplyLeading: false,
               flexibleSpace: Padding(
-                padding: const EdgeInsets.only(top: 40, right: 10, left: 10),
+                padding: const EdgeInsets.only(top: 40, right: 20, left: 20),
                 child: Column(children: [UserHeader(), Gap(20), SearchField()]),
               ),
             ),
+
             //search+category
             SliverToBoxAdapter(
               child: Padding(
@@ -61,9 +62,9 @@ class _HomeViewState extends State<HomeView> {
 
             //GridView
             SliverPadding(
-              padding: EdgeInsets.symmetric(horizontal: 15),
+              padding: const EdgeInsets.symmetric(horizontal: 15),
               sliver: SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   childAspectRatio: 0.74,
                 ),
@@ -75,12 +76,12 @@ class _HomeViewState extends State<HomeView> {
                         context,
                         MaterialPageRoute(
                           builder: (c) {
-                            return ProductDetailsView();
+                            return const ProductDetailsView();
                           },
                         ),
                       );
                     },
-                    child: CardItem(
+                    child: const CardItem(
                       image: 'assets/home/test.png',
                       text: "Cheeseburger",
                       desc: "Wendy's Burger",
@@ -90,6 +91,9 @@ class _HomeViewState extends State<HomeView> {
                 ),
               ),
             ),
+
+            // Gap added at the bottom to prevent the Nav Bar from covering the last items
+            const SliverToBoxAdapter(child: Gap(100)),
           ],
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:aura_eats/core/constants/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class CustomText extends StatelessWidget {
@@ -17,7 +18,11 @@ class CustomText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
-      style: TextStyle(fontSize: size, color: color, fontWeight: weight),
+      style: TextStyle(
+        fontSize: size,
+        color: color ?? AppColors.primary,
+        fontWeight: weight,
+      ),
     );
   }
 }
