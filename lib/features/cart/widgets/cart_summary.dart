@@ -3,13 +3,10 @@ import 'package:aura_eats/shared/custom_button.dart';
 import 'package:aura_eats/shared/custom_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class CartSummary extends StatelessWidget {
-  const CartSummary({
-    super.key,
-    required this.total,
-    required this.onCheckout,
-  });
+  const CartSummary({super.key, required this.total, required this.onCheckout});
 
   final String total;
   final VoidCallback onCheckout;
@@ -18,21 +15,14 @@ class CartSummary extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: Colors.transparent,
         borderRadius: BorderRadius.circular(30),
         border: Border.all(
-          color: AppColors.primary.withOpacity(0.18),
+          color: AppColors.primary.withOpacity(0.50),
           width: 1.5,
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.08),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
       ),
       child: Row(
         children: [
@@ -41,7 +31,7 @@ class CartSummary extends StatelessWidget {
             height: 44,
             decoration: BoxDecoration(
               color: AppColors.primary,
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(30),
             ),
             child: const Icon(
               CupertinoIcons.cart,
@@ -49,14 +39,14 @@ class CartSummary extends StatelessWidget {
               size: 22,
             ),
           ),
-          const SizedBox(width: 12),
+          const Gap(12),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.center,
+
                   children: [
                     CustomText(
                       text: 'Cart',
@@ -64,10 +54,10 @@ class CartSummary extends StatelessWidget {
                       weight: FontWeight.w600,
                       color: AppColors.primary,
                     ),
-                    const SizedBox(height: 2),
+
                     CustomText(
                       text: total,
-                      size: 18,
+                      size: 16,
                       weight: FontWeight.bold,
                       color: AppColors.primary,
                     ),
@@ -75,7 +65,7 @@ class CartSummary extends StatelessWidget {
                 ),
                 CustomButton(
                   text: 'Checkout',
-                  width: 130,
+                  width: 120,
                   height: 46,
                   onTap: onCheckout,
                 ),

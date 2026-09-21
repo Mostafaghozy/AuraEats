@@ -37,10 +37,10 @@ class _HomeViewState extends State<HomeView> {
               floating: false,
               scrolledUnderElevation: 0,
               backgroundColor: Colors.white,
-              toolbarHeight: 135,
+              toolbarHeight: 145,
               automaticallyImplyLeading: false,
               flexibleSpace: Padding(
-                padding: const EdgeInsets.only(top: 40, right: 10, left: 10),
+                padding: const EdgeInsets.only(top: 50, right: 10, left: 10),
                 child: Column(children: [UserHeader(), Gap(20), SearchField()]),
               ),
             ),
@@ -69,10 +69,10 @@ class _HomeViewState extends State<HomeView> {
               sliver: SliverGrid(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: 0.74,
+                  childAspectRatio: 0.70,
                 ),
                 delegate: SliverChildBuilderDelegate(
-                  childCount: 6,
+                  childCount: 8,
                   (context, index) => GestureDetector(
                     onTap: () {
                       Navigator.push(
@@ -88,7 +88,7 @@ class _HomeViewState extends State<HomeView> {
                       image: 'assets/home/test.png',
                       text: "Cheeseburger",
                       desc: "Wendy's Burger",
-                      rate: '4.9',
+                      rate: '4.0',
                     ),
                   ),
                 ),

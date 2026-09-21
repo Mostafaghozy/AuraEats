@@ -4,7 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class CardItem extends StatelessWidget {
+class CardItem extends StatefulWidget {
   const CardItem({
     super.key,
     required this.image,
@@ -15,36 +15,49 @@ class CardItem extends StatelessWidget {
   final String image, text, desc, rate;
 
   @override
-  Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(),
-      child: Card(
-        elevation: 5,
+  State<CardItem> createState() => _CardItemState();
+}
 
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-          side: BorderSide(color: AppColors.primary, width: 1),
-        ),
-        color: Colors.white,
-        shadowColor: AppColors.primary,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Image.asset(image, width: 150),
-              Gap(12),
-              CustomText(text: text, weight: FontWeight.bold),
-              CustomText(text: desc),
-              Row(
-                children: [
-                  CustomText(text: "⭐ $rate"),
-                  Spacer(),
-                  Icon(CupertinoIcons.heart, color: AppColors.primary),
-                ],
-              ),
-            ],
-          ),
+class _CardItemState extends State<CardItem> {
+  bool isFavorite = false;
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+      color: Colors.white,
+      shadowColor: AppColors.primary,
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Image.asset(widget.image, width: 150),
+            Gap(5),
+            CustomText(text: widget.text, weight: FontWeight.bold),
+            CustomText(text: widget.desc),
+            Gap(5),
+            Row(
+              children: [
+                CustomText(text: "⭐ ${widget.rate}"),
+                Spacer(),
+                IconButton(
+                  onPressed: () {
+                    setState(() {
+                      isFavorite = !isFavorite;
+                    });
+                  },
+                  icon: Icon(
+                    isFavorite
+                        ? CupertinoIcons.heart_fill
+                        : CupertinoIcons.heart,
+                    color: AppColors.primary,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

@@ -2,6 +2,7 @@ import 'package:aura_eats/features/cart/widgets/cart_item.dart';
 import 'package:aura_eats/features/cart/widgets/cart_summary.dart';
 import 'package:aura_eats/features/checkout/views/checkout_view.dart';
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class CartView extends StatefulWidget {
   const CartView({super.key});
@@ -12,7 +13,7 @@ class CartView extends StatefulWidget {
 
 class _CartViewState extends State<CartView> {
   late List<int> quantities;
-  final int itemCount = 10;
+  final int itemCount = 6;
 
   @override
   void initState() {
@@ -62,7 +63,7 @@ class _CartViewState extends State<CartView> {
                 },
               ),
             ),
-            const SizedBox(height: 20),
+            Gap(20),
             CartSummary(
               total: '\$18.9',
               onCheckout: () {
@@ -72,8 +73,7 @@ class _CartViewState extends State<CartView> {
                 );
               },
             ),
-            // هذه المساحة تم إضافتها لرفع زر الدفع فوق شريط التنقل العائم
-            const SizedBox(height: 130),
+            const SizedBox(height: 100),
           ],
         ),
       ),
