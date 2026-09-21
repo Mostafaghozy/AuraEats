@@ -15,7 +15,11 @@ class UserHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SvgPicture.asset("assets/logo/Hungry_.svg", height: 35),
+            SvgPicture.asset(
+              "assets/logo/Hungry_.svg",
+              color: AppColors.primary,
+              height: 35,
+            ),
             Gap(5),
 
             Padding(
@@ -24,16 +28,16 @@ class UserHeader extends StatelessWidget {
                 text: "Hello, Mostafa Ghozy",
                 size: 14,
                 weight: FontWeight.w500,
-                color: Colors.white,
+                color: AppColors.primary,
               ),
             ),
           ],
         ),
         Spacer(),
         CircleAvatar(
-          radius: 25,
-          backgroundColor: Colors.white,
-          child: Icon(CupertinoIcons.person, color: AppColors.primary),
+          radius: 20,
+          backgroundColor: AppColors.primary,
+          child: Icon(CupertinoIcons.person, color: Colors.white),
         ),
       ],
     );

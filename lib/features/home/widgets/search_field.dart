@@ -10,9 +10,17 @@ class SearchField extends StatelessWidget {
     return SizedBox(
       height: 50,
       child: TextField(
+        textAlignVertical: TextAlignVertical.center,
+        style: TextStyle(
+          color: AppColors.primary,
+          fontSize: 17,
+          fontWeight: FontWeight.w700,
+        ),
         decoration: InputDecoration(
-          prefixIcon: Icon(CupertinoIcons.search),
+          prefixIcon: Icon(CupertinoIcons.search, color: AppColors.primary),
           hintText: "Search...",
+
+          hintStyle: TextStyle(color: AppColors.primary.withOpacity(0.7)),
           fillColor: Colors.white,
           filled: true,
 
